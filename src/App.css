@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,46 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.board{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
 }
+
+
+.line{
+  display: flex;
+  gap: 5px
+}
+
+.tile{
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+
+.correct{
+  background-color: lightgreen;
+}
+.close{
+  background-color: yellow;
+}
+.incorrect{
+  background-color: gray;
+}
+
+
+
+
+
