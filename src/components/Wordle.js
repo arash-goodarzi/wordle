@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import APIService from "../services/APIService";
 import Line from "./Line";
-import { Button } from "@material-ui/core";
+import { Box, Button, ButtonGroup } from "@material-ui/core";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const Wordle = () => {
   const [solution, setSolution] = useState("");
@@ -11,9 +12,11 @@ const Wordle = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [allWords, setAllWords] = useState([]);
 
+  console.log({ solution });
+
   const handleStart = () => {
     const s = allWords[Math.floor(Math.random() * allWords.length)];
-    setSolution((pre) => s);
+    setSolution((prev) => (s === undefined ? "world" : s));
     setGuesses(new Array(6).fill(null));
     setIsFinished(false);
   };
@@ -51,8 +54,12 @@ const Wordle = () => {
           setIsFinished(true);
         }
 
+        console.log({ current });
+        console.log({ guesses });
         guesses[guesses.findIndex((val) => val == null)] = current;
+        console.log({ guesses });
         setCurrent("");
+        console.log({ current });
         return;
       }
 
@@ -83,12 +90,19 @@ const Wordle = () => {
           />
         );
       })}
-      <div>
+      <ButtonGroup>
         <Button variant="contained" color="secondary" onClick={handleStart}>
-          Contained
+          Start
           <VideogameAssetIcon />
         </Button>
-      </div>
+        <Button
+          variant="contained"
+          color="inherit"
+          onClick={() => alert(`The solution is "${solution}"`)}
+        >
+          <VisibilityIcon />
+        </Button>
+      </ButtonGroup>
     </div>
   );
 };
