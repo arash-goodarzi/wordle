@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
 import APIService from "../services/APIService";
 import Line from "./Line";
-import { Box, Button, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import Keyboard from "./Keyboard";
 
 const Wordle = () => {
   const [solution, setSolution] = useState("");
   const [guesses, setGuesses] = useState(new Array(6).fill(null));
   const [current, setCurrent] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(true);
   const [allWords, setAllWords] = useState([]);
 
+  console.log({ current });
   console.log({ solution });
 
   const handleStart = () => {
-    const s = allWords[Math.floor(Math.random() * allWords.length)];
-    setSolution((prev) => (s === undefined ? "world" : s));
-    setGuesses(new Array(6).fill(null));
-    setIsFinished(false);
+    if (isFinished) {
+      alert("ggggg");
+      const s = allWords[Math.floor(Math.random() * allWords.length)];
+      setSolution((prev) => (s === undefined ? "WORLD" : s.toUpperCase()));
+      setGuesses(new Array(6).fill(null));
+      setIsFinished(false);
+    }
   };
 
   useEffect(() => {
@@ -31,6 +37,7 @@ const Wordle = () => {
 
   useEffect(() => {
     const handleType = (e) => {
+      console.log("==> ", e.key);
       if (isFinished) {
         return;
       }
@@ -41,6 +48,7 @@ const Wordle = () => {
       }
 
       if (e.key === "Enter") {
+        console.log("enter enter");
         if (current.length < 5) {
           return;
         }
@@ -52,19 +60,16 @@ const Wordle = () => {
         if (current === solution) {
           alert("You won!");
           setIsFinished(true);
+          // return;
         }
 
-        console.log({ current });
-        console.log({ guesses });
         guesses[guesses.findIndex((val) => val == null)] = current;
-        console.log({ guesses });
         setCurrent("");
-        console.log({ current });
         return;
       }
 
       if (e.key.match(/[A-Za-z]/)) {
-        setCurrent((prev) => prev + e.key);
+        setCurrent((prev) => prev + e.key.toUpperCase());
         return;
       }
     };
@@ -90,8 +95,13 @@ const Wordle = () => {
           />
         );
       })}
+      <Keyboard />
       <ButtonGroup>
-        <Button variant="contained" color="secondary" onClick={handleStart}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={(e) => handleStart(e)}
+        >
           Start
           <VideogameAssetIcon />
         </Button>
@@ -101,6 +111,14 @@ const Wordle = () => {
           onClick={() => alert(`The solution is "${solution}"`)}
         >
           <VisibilityIcon />
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => window.location.reload(false)}
+        >
+          Refresh
+          <RefreshIcon />
         </Button>
       </ButtonGroup>
     </div>
