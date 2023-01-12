@@ -31,49 +31,70 @@ const Keyboard = () => {
           <Paper
             key={char}
             sx={{
-              height: "60px",
-              minWidth: "60px",
+              width: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
+              height: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
               fontSize: "1em",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
-              m: "5px",
+              m: {
+                xs: "0px",
+                sm: "1px",
+                md: "1px",
+                lg: "2px",
+                xl: "2px",
+              },
             }}
             onClick={() => handleVirtualKeyboard(char)}
           >
             {char}
           </Paper>
         ))}
-        <Paper
-          sx={{
-            height: "60px",
-            minWidth: "60px",
-            fontSize: "1em",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer",
-            m: "5px",
-          }}
-          onClick={(e) => handleVirtualKeyboard(e.target.firstChild.data)}
-        >
-          Backspace
-        </Paper>
       </Box>
       <Box display="flex" color="red">
         {row2.map((char) => (
           <Paper
             key={char}
             sx={{
-              height: "60px",
-              width: "60px",
+              width: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
+              height: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
               fontSize: "1em",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
-              m: "5px",
+              m: {
+                xs: "0px",
+                sm: "1px",
+                md: "1px",
+                lg: "2px",
+                xl: "2px",
+              },
             }}
             onClick={() => handleVirtualKeyboard(char)}
           >
@@ -82,14 +103,32 @@ const Keyboard = () => {
         ))}
         <Paper
           sx={{
-            height: "60px",
-            minWidth: "60px",
-            fontSize: "1em",
+            width: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+              lg: "35px",
+              xl: "40px",
+            },
+            height: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+              lg: "35px",
+              xl: "40px",
+            },
+            fontSize: "0.75em",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             cursor: "pointer",
-            m: "5px",
+            m: {
+              xs: "0px",
+              sm: "1px",
+              md: "1px",
+              lg: "2px",
+              xl: "2px",
+            },
           }}
           onClick={(e) => handleVirtualKeyboard(e.target.firstChild.data)}
         >
@@ -101,20 +140,71 @@ const Keyboard = () => {
           <Paper
             key={char}
             sx={{
-              height: "60px",
-              width: "60px",
+              width: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
+              height: {
+                xs: "20px",
+                sm: "25px",
+                md: "30px",
+                lg: "35px",
+                xl: "40px",
+              },
               fontSize: "1em",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               cursor: "pointer",
-              m: "5px",
+              m: {
+                xs: "0px",
+                sm: "1px",
+                md: "1px",
+                lg: "2px",
+                xl: "2px",
+              },
             }}
             onClick={() => handleVirtualKeyboard(char)}
           >
             {char}
           </Paper>
         ))}
+        <Paper
+          sx={{
+            width: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+              lg: "35px",
+              xl: "40px",
+            },
+            height: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+              lg: "35px",
+              xl: "40px",
+            },
+            fontSize: "0.5em",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+            m: {
+              xs: "1px",
+              sm: "2px",
+              md: "3px",
+              lg: "4px",
+              xl: "5px",
+            },
+          }}
+          onClick={(e) => handleVirtualKeyboard(e.target.firstChild.data)}
+        >
+          Backspace
+        </Paper>
       </Box>
     </Box>
   );
