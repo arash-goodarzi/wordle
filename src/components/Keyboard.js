@@ -3,8 +3,6 @@ import { Box, Paper } from "@mui/material";
 
 const Keyboard = () => {
   const handleVirtualKeyboard = (e) => {
-    console.log({ e });
-    console.log("$$$$$");
     window.dispatchEvent(
       new KeyboardEvent("keydown", {
         key: e,

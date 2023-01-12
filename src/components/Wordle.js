@@ -14,12 +14,9 @@ const Wordle = () => {
   const [isFinished, setIsFinished] = useState(true);
   const [allWords, setAllWords] = useState([]);
 
-  console.log({ current });
-  console.log({ solution });
-
   const handleStart = () => {
     if (isFinished) {
-      alert("ggggg");
+      alert("A new word is added");
       const s = allWords[Math.floor(Math.random() * allWords.length)];
       setSolution((prev) => (s === undefined ? "WORLD" : s.toUpperCase()));
       setGuesses(new Array(6).fill(null));
@@ -37,7 +34,6 @@ const Wordle = () => {
 
   useEffect(() => {
     const handleType = (e) => {
-      console.log("==> ", e.key);
       if (isFinished) {
         return;
       }
@@ -48,7 +44,6 @@ const Wordle = () => {
       }
 
       if (e.key === "Enter") {
-        console.log("enter enter");
         if (current.length < 5) {
           return;
         }
@@ -60,7 +55,6 @@ const Wordle = () => {
         if (current === solution) {
           alert("You won!");
           setIsFinished(true);
-          // return;
         }
 
         guesses[guesses.findIndex((val) => val == null)] = current;
