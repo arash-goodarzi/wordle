@@ -90,7 +90,7 @@ const Wordle = () => {
         );
       })}
       <Keyboard />
-      <ButtonGroup>
+      <ButtonGroup size="medium">
         <Button
           variant="contained"
           color="secondary"
