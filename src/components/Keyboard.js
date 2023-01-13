@@ -25,8 +25,8 @@ const Keyboard = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      mt="20px"
-      mb="30px"
+      mt="10px"
+      mb="20px"
     >
       <Box display="flex" color="red">
         {row1.map((char) => (

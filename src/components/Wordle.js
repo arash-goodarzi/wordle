@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
 import APIService from "../services/APIService";
 import Line from "./Line";
-import { Button, ButtonGroup, Box } from "@mui/material";
+import {
+  Button,
+  ButtonGroup,
+  Box,
+  Typography,
+  Dialog,
+  Alert,
+  AlertTitle,
+  IconButton,
+  List,
+  ListItem,
+} from "@mui/material";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Keyboard from "./Keyboard";
 import Logo from "../images/logo.png";
+import { motion } from "framer-motion";
+
+// Icons
+import WbIncandescentIcon from "@mui/icons-material/WbIncandescent";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import InfoIcon from "@mui/icons-material/Info";
+import SportsScoreIcon from "@mui/icons-material/SportsScore";
 
 const Wordle = () => {
   const [solution, setSolution] = useState("");
@@ -15,9 +33,41 @@ const Wordle = () => {
   const [isFinished, setIsFinished] = useState(true);
   const [allWords, setAllWords] = useState([]);
 
+  const [openAlertNewWord, setOpenAlertNewWord] = useState(false);
+  const [showSoulution, setShowSoulution] = useState(false);
+  const [showWon, setShowWon] = useState(false);
+  const [instruction, setInstruction] = useState(false);
+
+  const wonMessage = [
+    "Bravo!!!",
+    "Congratulations!!!",
+    "Well done!",
+    "It was hard but you made it.",
+    "Victory is in having done your best. If you've done your best, you've won.",
+    "It's not whether you get knocked down. It's whether you get back up.",
+    "It’s not about perfect. It’s about effort.",
+    "You were born to be a player. You were meant to be here. This moment is yours.",
+  ];
+
+  const handleCloseAlertNewWord = () => {
+    setOpenAlertNewWord(!openAlertNewWord);
+  };
+
+  const handleCloseAlertShowSolution = () => {
+    setShowSoulution(!showSoulution);
+  };
+
+  const handleCloseAlertShowWon = () => {
+    setShowWon(!showWon);
+  };
+
+  const handleCloseAlertInstruction = () => {
+    setInstruction(!instruction);
+  };
+
   const handleStart = () => {
     if (isFinished) {
-      alert("A new word is added");
+      setOpenAlertNewWord(() => true);
       const s = allWords[Math.floor(Math.random() * allWords.length)];
       setSolution((prev) => (s === undefined ? "WORLD" : s.toUpperCase()));
       setGuesses(new Array(6).fill(null));
@@ -54,7 +104,7 @@ const Wordle = () => {
         }
 
         if (current === solution) {
-          alert("You won!");
+          setShowWon(true);
           setIsFinished(true);
         }
 
@@ -77,16 +127,36 @@ const Wordle = () => {
   }, [current, solution, isFinished, guesses]);
 
   return (
-    <div className="board">
-      <h1
-        style={{
-          fontFamily: "'Kavoon', cursive",
-          fontSize: "2.5em",
-        }}
-      >
-        Wordle
-      </h1>
-      <Box mb="38px">
+    <Box className="board">
+      <Box display="flex">
+        <Box>
+          <Typography
+            variant="h1"
+            style={{
+              fontFamily: "'Kavoon', cursive",
+              fontSize: "2.5em",
+            }}
+          >
+            Wordle
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="end">
+          <IconButton onClick={() => setInstruction(true)}>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ rotate: 360, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 50,
+              }}
+            >
+              <InfoIcon color="secondary" />
+            </motion.div>
+          </IconButton>
+        </Box>
+      </Box>
+      <Box mb="10px">
         <img src={Logo} alt="logo" width={300} />
       </Box>
       {guesses.map((guess, i) => {
@@ -113,7 +183,7 @@ const Wordle = () => {
         <Button
           variant="contained"
           color="inherit"
-          onClick={() => alert(`The solution is "${solution}"`)}
+          onClick={() => setShowSoulution(true)}
         >
           <VisibilityIcon />
         </Button>
@@ -126,7 +196,50 @@ const Wordle = () => {
           <RefreshIcon />
         </Button>
       </ButtonGroup>
-    </div>
+      <Dialog open={openAlertNewWord} onClick={handleCloseAlertNewWord}>
+        <Alert severity="info">
+          <AlertTitle>A new word is added</AlertTitle>Good Luck.
+        </Alert>
+      </Dialog>
+      <Dialog open={showSoulution} onClose={handleCloseAlertShowSolution}>
+        <Alert severity="error" icon={<WbIncandescentIcon />}>
+          <AlertTitle>Solution</AlertTitle> `The solution is "{solution}".`
+        </Alert>
+      </Dialog>
+      <Dialog open={showWon} onClose={handleCloseAlertShowWon}>
+        <Alert severity="success" icon={<EmojiEventsIcon />}>
+          <AlertTitle>You WIN!!!</AlertTitle>
+          {wonMessage[Math.floor(Math.random() * wonMessage.length)]}
+        </Alert>
+      </Dialog>
+      <Dialog open={instruction} onClose={handleCloseAlertInstruction}>
+        <Alert severity="info" icon={<SportsScoreIcon />}>
+          <AlertTitle>Game rules</AlertTitle>
+          <List>
+            <ListItem>
+              In this game you should guess which word with 5 characters has
+              been chosen. You have 6 tries and in each row you should choose
+              only 5 characters then press "Enter". Game will show you the
+              result in colors. Green means the character exists and placed in
+              correct position.Yellow Means the character exists but in a wrong
+              place and gray means the character doesn't exist in the word.
+            </ListItem>
+            <ListItem>
+              <VideogameAssetIcon sx={{ mr: "5px" }} />
+              To start the game press "START".
+            </ListItem>
+            <ListItem>
+              <VisibilityIcon sx={{ mr: "5px" }} />
+              To see the word, press the eye-shaped button.
+            </ListItem>
+            <ListItem>
+              <RefreshIcon sx={{ mr: "5px" }} />
+              To refresh the page, press "REFRESH".
+            </ListItem>
+          </List>
+        </Alert>
+      </Dialog>
+    </Box>
   );
 };
 
