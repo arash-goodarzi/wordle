@@ -25,6 +25,8 @@ const Keyboard = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      mt="20px"
+      mb="30px"
     >
       <Box display="flex" color="red">
         {row1.map((char) => (
@@ -32,18 +34,18 @@ const Keyboard = () => {
             key={char}
             sx={{
               width: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               height: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               fontSize: "1em",
               display: "flex",
@@ -51,11 +53,11 @@ const Keyboard = () => {
               alignItems: "center",
               cursor: "pointer",
               m: {
-                xs: "0px",
-                sm: "1px",
-                md: "1px",
-                lg: "2px",
-                xl: "2px",
+                xs: "1px",
+                sm: "2px",
+                md: "2px",
+                lg: "3px",
+                xl: "4px",
               },
             }}
             onClick={() => handleVirtualKeyboard(char)}
@@ -70,18 +72,18 @@ const Keyboard = () => {
             key={char}
             sx={{
               width: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               height: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               fontSize: "1em",
               display: "flex",
@@ -89,11 +91,11 @@ const Keyboard = () => {
               alignItems: "center",
               cursor: "pointer",
               m: {
-                xs: "0px",
-                sm: "1px",
-                md: "1px",
-                lg: "2px",
-                xl: "2px",
+                xs: "1px",
+                sm: "2px",
+                md: "2px",
+                lg: "3px",
+                xl: "4px",
               },
             }}
             onClick={() => handleVirtualKeyboard(char)}
@@ -104,18 +106,18 @@ const Keyboard = () => {
         <Paper
           sx={{
             width: {
-              xs: "20px",
-              sm: "25px",
-              md: "30px",
-              lg: "35px",
-              xl: "40px",
+              xs: "30px",
+              sm: "35px",
+              md: "40px",
+              lg: "45px",
+              xl: "50px",
             },
             height: {
-              xs: "20px",
-              sm: "25px",
-              md: "30px",
-              lg: "35px",
-              xl: "40px",
+              xs: "30px",
+              sm: "35px",
+              md: "40px",
+              lg: "45px",
+              xl: "50px",
             },
             fontSize: "0.75em",
             display: "flex",
@@ -123,11 +125,11 @@ const Keyboard = () => {
             alignItems: "center",
             cursor: "pointer",
             m: {
-              xs: "0px",
-              sm: "1px",
-              md: "1px",
-              lg: "2px",
-              xl: "2px",
+              xs: "1px",
+              sm: "2px",
+              md: "2px",
+              lg: "3px",
+              xl: "4px",
             },
           }}
           onClick={(e) => handleVirtualKeyboard(e.target.firstChild.data)}
@@ -141,18 +143,18 @@ const Keyboard = () => {
             key={char}
             sx={{
               width: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               height: {
-                xs: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
+                xs: "30px",
+                sm: "35px",
+                md: "40px",
+                lg: "45px",
+                xl: "50px",
               },
               fontSize: "1em",
               display: "flex",
@@ -160,11 +162,11 @@ const Keyboard = () => {
               alignItems: "center",
               cursor: "pointer",
               m: {
-                xs: "0px",
-                sm: "1px",
-                md: "1px",
-                lg: "2px",
-                xl: "2px",
+                xs: "1px",
+                sm: "2px",
+                md: "2px",
+                lg: "3px",
+                xl: "4px",
               },
             }}
             onClick={() => handleVirtualKeyboard(char)}
@@ -175,20 +177,20 @@ const Keyboard = () => {
         <Paper
           sx={{
             width: {
-              xs: "20px",
-              sm: "25px",
-              md: "30px",
-              lg: "35px",
-              xl: "40px",
+              xs: "55px",
+              sm: "60px",
+              md: "65px",
+              lg: "70px",
+              xl: "75px",
             },
             height: {
-              xs: "20px",
-              sm: "25px",
-              md: "30px",
-              lg: "35px",
-              xl: "40px",
+              xs: "30px",
+              sm: "35px",
+              md: "40px",
+              lg: "45px",
+              xl: "50px",
             },
-            fontSize: "0.5em",
+            fontSize: "0.7em",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -196,9 +198,9 @@ const Keyboard = () => {
             m: {
               xs: "1px",
               sm: "2px",
-              md: "3px",
-              lg: "4px",
-              xl: "5px",
+              md: "2px",
+              lg: "3px",
+              xl: "4px",
             },
           }}
           onClick={(e) => handleVirtualKeyboard(e.target.firstChild.data)}

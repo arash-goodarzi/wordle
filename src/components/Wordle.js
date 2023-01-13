@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import APIService from "../services/APIService";
 import Line from "./Line";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup, Box } from "@mui/material";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Keyboard from "./Keyboard";
+import Logo from "../images/logo.png";
 
 const Wordle = () => {
   const [solution, setSolution] = useState("");
@@ -77,7 +78,17 @@ const Wordle = () => {
 
   return (
     <div className="board">
-      <h1 style={{ fontFamily: "game", fontSize: "2.5em" }}>Wordle</h1>
+      <h1
+        style={{
+          fontFamily: "'Kavoon', cursive",
+          fontSize: "2.5em",
+        }}
+      >
+        Wordle
+      </h1>
+      <Box mb="38px">
+        <img src={Logo} alt="logo" width={300} />
+      </Box>
       {guesses.map((guess, i) => {
         const isCurrentGuess = i === guesses.findIndex((val) => val === null);
         return (
