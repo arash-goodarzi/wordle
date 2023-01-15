@@ -17,7 +17,6 @@ import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Keyboard from "./Keyboard";
-import Logo from "../images/logo.png";
 import { motion } from "framer-motion";
 
 // Icons
@@ -38,6 +37,8 @@ const Wordle = () => {
   const [showWon, setShowWon] = useState(false);
   const [instruction, setInstruction] = useState(false);
 
+  const [backgroundPage, setBackgroundPage] = useState("white");
+
   const wonMessage = [
     "Bravo!!!",
     "Congratulations!!!",
@@ -47,6 +48,30 @@ const Wordle = () => {
     "It's not whether you get knocked down. It's whether you get back up.",
     "It’s not about perfect. It’s about effort.",
     "You were born to be a player. You were meant to be here. This moment is yours.",
+    "You did it! So proud of you!",
+    "Congratulations on your well-deserved success.",
+    "Heartfelt congratulations to you.",
+    "Warmest congratulations on your achievement.",
+    "Congratulations and best wishes for your next adventure!",
+    "So pleased to see you accomplishing great things.",
+    "Victory is always possible for the person who refuses to stop fighting.",
+    "Victory belongs to the most persevering.",
+    "Invincibility lies in the defence; the possibility of victory in the attack.",
+    "Far better is it to dare mighty things, to win glorious triumphs, even though checkered by failure... than to rank with those poor spirits who neither enjoy nor suffer much, because they live in a gray twilight that knows not victory nor defeat.",
+    "The first and greatest victory is to conquer yourself; to be conquered by yourself is of all things most shameful and vile.",
+    "Accept the challenges so that you can feel the exhilaration of victory.",
+    "Your victory is right around the corner. Never give up.",
+    "Failure is only postponed success as long as courage 'coaches' ambition. The habit of persistence is the habit of victory.",
+    "In the time of darkest defeat, victory may be nearest.",
+  ];
+
+  const slogan = [
+    { id: 1, char: "W", color: "salmon" },
+    { id: 2, char: "O", color: "orange" },
+    { id: 3, char: "R", color: "khaki" },
+    { id: 4, char: "D", color: "cyan" },
+    { id: 5, char: "L", color: "mediumseagreen" },
+    { id: 6, char: "E", color: "violet" },
   ];
 
   const handleCloseAlertNewWord = () => {
@@ -75,6 +100,10 @@ const Wordle = () => {
     }
   };
 
+  const handleBackgroundColor = (backgroundColor) => {
+    setBackgroundPage(() => backgroundColor);
+  };
+
   useEffect(() => {
     const api = new APIService();
     api
@@ -89,6 +118,9 @@ const Wordle = () => {
         return;
       }
 
+      if (e.key === "Control" || e.key === "Alt") {
+        return;
+      }
       if (e.key === "Backspace") {
         setCurrent((prev) => [...prev].slice(0, -1));
         return;
@@ -127,7 +159,7 @@ const Wordle = () => {
   }, [current, solution, isFinished, guesses]);
 
   return (
-    <Box className="board">
+    <Box className="board" bgcolor={backgroundPage}>
       <Box display="flex">
         <Box>
           <Typography
@@ -156,8 +188,41 @@ const Wordle = () => {
           </IconButton>
         </Box>
       </Box>
-      <Box mb="10px">
-        <img src={Logo} alt="logo" width={300} />
+      <Box display="flex">
+        {slogan.map((item) => (
+          <Box
+            key={item.id}
+            sx={{
+              display: "flex",
+              bgcolor: item.color,
+              borderRadius: "50%",
+              justifyContent: "center",
+              alignItems: "center",
+              fontWeight: "bold",
+              fontFamily: "serif",
+              width: {
+                xs: "40px",
+                sm: "45px",
+                md: "50px",
+                lg: "55px",
+                xl: "60px",
+              },
+              height: {
+                xs: "40px",
+                sm: "45px",
+                md: "50px",
+                lg: "55px",
+                xl: "60px",
+              },
+              fontSize: "1.5rem",
+              cursor: "pointer",
+              border: "1px solid black",
+            }}
+            onClick={() => handleBackgroundColor(item.color)}
+          >
+            {item.char}
+          </Box>
+        ))}
       </Box>
       {guesses.map((guess, i) => {
         const isCurrentGuess = i === guesses.findIndex((val) => val === null);
@@ -208,7 +273,7 @@ const Wordle = () => {
       </Dialog>
       <Dialog open={showWon} onClose={handleCloseAlertShowWon}>
         <Alert severity="success" icon={<EmojiEventsIcon />}>
-          <AlertTitle>You WIN!!!</AlertTitle>
+          <AlertTitle>You WON!!!</AlertTitle>
           {wonMessage[Math.floor(Math.random() * wonMessage.length)]}
         </Alert>
       </Dialog>
