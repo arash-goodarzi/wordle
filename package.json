@@ -1,6 +1,6 @@
 {
   "homepage": "http://arash-goodarzi.github.io/wordle",
-  "name": "wordle",
+  "name": "react-wordle",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
